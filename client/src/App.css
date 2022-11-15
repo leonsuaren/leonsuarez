@@ -11443,6 +11443,7 @@ html {
 }
 .masthead .masthead-avatar {
   width: 15rem;
+  border-radius: 50%;
 }
 
 @media (min-width: 992px) {
@@ -11506,4 +11507,9 @@ html {
 
 .copyright {
   background-color: #1a252f;
+}
+
+.button-margin {
+  margin: 0 10px;
+  
 }
