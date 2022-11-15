@@ -14,6 +14,8 @@ node_modules/
 # production
 /build
 
+.config.env
+
 # misc
 .DS_Store
 .env.local
