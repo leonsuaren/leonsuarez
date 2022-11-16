@@ -11513,3 +11513,15 @@ html {
   margin: 0 10px;
   
 }
+
+.spinner-style {
+  width: 150px;
+  height: 150px;
+  font-size: 2rem;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}

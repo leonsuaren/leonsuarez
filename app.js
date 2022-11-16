@@ -10,7 +10,7 @@ const projectRouter = require('./routes/projects');
 
 connectDB();
 
-app.use('/api/projects', projectRouter);
+app.use('/api/projects', cors(), projectRouter);
 
 app.use(cors());
 app.use(express.json());
