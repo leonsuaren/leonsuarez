@@ -4,9 +4,13 @@ const app = express();
 const cors = require('cors');
 const connectDB = require('./config/db');
 
+
 const PORT = process.env.PORT;
+const projectRouter = require('./routes/projects');
 
 connectDB();
+
+app.use('/api/projects', projectRouter);
 
 app.use(cors());
 app.use(express.json());
