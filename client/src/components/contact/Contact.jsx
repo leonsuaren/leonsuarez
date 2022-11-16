@@ -10,6 +10,13 @@ export const Contact = () => {
           <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
           <div className="divider-custom-line"></div>
         </div>
+        <h3 className="text-center text-secondary">My Number: (937) - 424 6188</h3>
+        <h3 className="text-center text-secondary">My Email: leonsua@gmail.com</h3>
+        <div className="divider-custom">
+          <div className="divider-custom-line"></div>
+          <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
+          <div className="divider-custom-line"></div>
+        </div>
         <div className="row justify-content-center">
           <div className="col-lg-8 col-xl-7">
             <form id="contactForm" data-sb-form-api-token="API_TOKEN">
