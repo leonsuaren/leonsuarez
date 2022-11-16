@@ -11525,3 +11525,7 @@ html {
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
 }
+
+.error-margin {
+  margin: 20px 0px;
+}

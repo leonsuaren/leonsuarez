@@ -13,6 +13,11 @@ export const Header = () => {
         </div>
         <p className="masthead-subheading font-weight-light mb-0">Full Stack Web Developer</p>
       </div>
+      <div className="text-center mt-4">
+        <a className="btn btn-xl btn-outline-light" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/leon-suarez/">
+          LinkedIn
+        </a>
+      </div>
     </header>
   )
 }

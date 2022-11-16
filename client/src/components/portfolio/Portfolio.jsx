@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useGetProjects } from '../../hooks/api/getProjects';
 
 import { Loading } from '../../components/loading';
+import { ServerError } from '../server-error';
 
 export const Portfolio = () => {
   const [singleProject, setSingleProject] = useState([{
@@ -19,7 +20,6 @@ export const Portfolio = () => {
     const singleProject = projects.filter(project => project._id === projectID);
     setSingleProject(singleProject);
   }
-  // console.log(singleProject);
   return (
     <section className="page-section portfolio" id="portfolio">
       <div className="container">
@@ -29,25 +29,29 @@ export const Portfolio = () => {
           <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
           <div className="divider-custom-line"></div>
         </div>
-        {loading ? <div className='text-center align-items-center justify-content-center h-100 w-100'><Loading /></div>  :
-          <div className="portfolio-grid">
-            {
-              projects.map((project, key) => {
-                return (
-                  <div key={key}>
-                    <div>
-                      <div>
-                        <div className="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1" onClick={() => handleOnSingleProject(project._id)}>
-                          <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div className="portfolio-item-caption-content text-center text-white">{project.projectName}</div>
+        {error !== undefined ? <ServerError /> :
+          <div>
+            {loading ? <div className='text-center align-items-center justify-content-center h-100 w-100'><Loading /></div> :
+              <div className="portfolio-grid">
+                {
+                  projects.map((project, key) => {
+                    return (
+                      <div key={key}>
+                        <div>
+                          <div>
+                            <div className="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1" onClick={() => handleOnSingleProject(project._id)}>
+                              <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div className="portfolio-item-caption-content text-center text-white">{project.projectName}</div>
+                              </div>
+                              <img className="img-fluid" src={project.projectImage} alt={project.projectName} />
+                            </div>
                           </div>
-                          <img className="img-fluid" src={project.projectImage} alt={project.projectName} />
                         </div>
                       </div>
-                    </div>
-                  </div>
-                )
-              })
+                    )
+                  })
+                }
+              </div>
             }
           </div>
         }
@@ -62,7 +66,7 @@ export const Portfolio = () => {
                       <h2 className="portfolio-modal-title text-secondary text-uppercase mb-singleP">{singleProject[0].projectName}</h2>
                       <h5 className='text-secondary mb-0'>by {singleProject[0].projectAutor}</h5>
                       <div className="divider-custom">
-                        <div className="divider-custom-line"></div> 
+                        <div className="divider-custom-line"></div>
                         <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
                         <div className="divider-custom-line"></div>
                       </div>

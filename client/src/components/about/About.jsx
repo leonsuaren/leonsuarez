@@ -15,8 +15,8 @@ export const About = () => {
           <div className="col-lg-4 me-auto"><p className="lead">Outside of work, I love swimming, running, and biking. Or, in other words, "Triathlons". Thriathons have taught me that the path can be difficult, but once you arrive, the reward is enormous.</p></div>
         </div>
         <div className="text-center mt-4">
-          <a className="btn btn-xl btn-outline-light" target="_blank" rel="noreferrer" href="https://github.com/leonsuaren">
-                GitHub
+          <a className="btn btn-xl btn-outline-light" target="_blank" rel="noreferrer" href="https://www.facebook.com/leon.suarez.925">
+                Facebook
             </a>
         </div>
       </div>
