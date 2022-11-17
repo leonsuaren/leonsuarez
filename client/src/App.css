@@ -11529,3 +11529,19 @@ html {
 .error-margin {
   margin: 20px 0px;
 }
+
+.form-field-error {
+  color: rgb(236, 67, 67);
+}
+
+.alerts-section {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alert-style {
+  width: 100%;
+}
