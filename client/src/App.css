@@ -11545,3 +11545,50 @@ html {
 .alert-style {
   width: 100%;
 }
+
+/* LOGIN AS ADMIN  BEGIN*/
+
+.login-as-admin-body {
+  background-color: #2d3d4f;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .login-as-admin-window {
+  display: flex;
+  background-color: #1bbc9b;
+  width: 500px;
+  height: 500px;
+  border: solid 10x #CCCCCC;
+  border-radius: 20px;
+  box-shadow: 35px 35px 35px;
+} */
+
+@media (min-width: 375px) {
+.login-as-admin-window {
+  display: flex;
+  background-color: #1bbc9b;
+  width: 250px;
+  height: 300px;
+  border: solid 10x #CCCCCC;
+  border-radius: 20px;
+  box-shadow: 35px 35px 35px;
+}
+}
+
+@media (min-width: 820px) {
+.login-as-admin-window {
+  display: flex;
+  background-color: #1bbc9b;
+  width: 500px;
+  height: 500px;
+  border: solid 10x #CCCCCC;
+  border-radius: 20px;
+  box-shadow: 35px 35px 35px;
+} 
+}
+
+/* LOGIN AS ADMIN END */
