@@ -1,8 +1,8 @@
 import React from 'react';
 
-export const Loading = () => {
+export const Loading = ({ spinnerStyle }) => {
   return (
-    <div className="spinner-border text-success spinner-style" role="status">
+    <div className={`spinner-border text-${spinnerStyle} spinner-style`} role="status">
       <span className="visually-hidden">Loading...</span>
     </div>
   )

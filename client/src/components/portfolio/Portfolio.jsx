@@ -31,7 +31,7 @@ export const Portfolio = () => {
         </div>
         {error !== undefined ? <ServerError /> :
           <div>
-            {loading ? <div className='text-center align-items-center justify-content-center h-100 w-100'><Loading /></div> :
+            {loading ? <div className='text-center align-items-center justify-content-center h-100 w-100'><Loading spinnerStyle='success'/></div> :
               <div className="portfolio-grid">
                 {
                   projects.map((project, key) => {
