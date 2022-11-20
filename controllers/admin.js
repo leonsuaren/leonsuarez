@@ -14,13 +14,15 @@ exports.adminLogin = async (req, res) => {
   const { adminName, password } = req.body;
   try {
     const admin =  await Admin.findOne({ adminName }).select("+password");
+    if (!admin) {
+      return res.status(404).json({ token: null, message: "Invalid Name", user: null, success: false });
+    }
     const isMatch = await admin.matchPasswords(password);
-    console.log(isMatch);
     if (!isMatch) {
-      return res.status(404).json({ token: null, message: "Invalid Password", user: null });
+      return res.status(404).json({ token: null, message: "Invalid Password", user: null, seuccess: false });
     }
     const token = admin.getSignedToken();
-    res.status(200).json({ token: token, message: 'Login Success', admin: admin });
+    res.status(200).json({ token: token, message: 'Login Success' });
   } catch (error) {
     res.status(404).json({ error: error });
   }
