@@ -12,8 +12,10 @@ exports.createProfileInfo = async (req, res) => {
 
 exports.getProfileInfo = async (req, res) => {
   const { profileLanguage } = req.body;
+  console.log(profileLanguage);
   try {
     const profileInfo = await ProfileInfo.findOne({ profileLanguage: profileLanguage });
+    console.log(profileInfo);
     res.status(200).json({ message: 'Profile found success!', profileInfo: profileInfo });
   } catch (error) {
     res.status(500).json({ error: error });

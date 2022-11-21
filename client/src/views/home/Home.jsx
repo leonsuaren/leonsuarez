@@ -11,7 +11,6 @@ import { Footer } from '../../components/footer';
 
 export const Home = () => {
   const adminLogedIn = useContext(AdminLogedIn);
-  console.log(adminLogedIn.login);
 
   return (
     <div>

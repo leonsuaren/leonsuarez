@@ -10,6 +10,7 @@ import { CrudButton } from '../../components/crud-button';
 
 export const Portfolio = () => {
   const adminLogedIn = useContext(AdminLogedIn);
+  const [loading, projects, error] = useGetProjects();
 
   const [singleProject, setSingleProject] = useState([{
     projectName: '',
@@ -18,7 +19,6 @@ export const Portfolio = () => {
     projectAutor: '',
     projectDescription: ''
   }]);
-  const [loading, projects, error] = useGetProjects();
   if (!projects) return null;
 
   const handleOnSingleProject = (projectID) => {
