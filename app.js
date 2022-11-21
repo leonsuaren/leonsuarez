@@ -10,6 +10,7 @@ const PORT = process.env.PORT;
 const projectRouter = require('./routes/projects');
 const contactRouter = require('./routes/contacts');
 const adminRouter = require('./routes/admin');
+const profileInfoRouter = require('./routes/profileInfo');
 
 connectDB();
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api/projects', cors(), projectRouter);
 app.use('/api/contacts', cors(), contactRouter);
 app.use('/api/admin', cors(), adminRouter);
+app.use('/api/profile', cors(), profileInfoRouter);
 
 app.get('/', (req, res) => {
   res.send({message: 'App working'});
