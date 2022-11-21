@@ -23,7 +23,7 @@ export const Header = () => {
       await axios.put('http://localhost:8080/api/profile/update-profile-info',
         { profileName: values.profileName, profileTitle: values.profileTitle, profileLanguage: values.profileLanguage })
         .then((response) => {
-          console.log(response);
+          console.log(response, 'edit');
         })
         .catch((error) => {
           console.log(error);
@@ -87,7 +87,7 @@ export const Header = () => {
           <div className="divider-custom-line"></div>
           {
             adminLogedIn.login ?
-              !editMode ? <CrudButton crudAction='Edit' onClick={handleOnChangeToEditMode} /> : <CrudButton crudAction='update' onClick={handleOnUpdateProfileInfo} />
+              !editMode ? <CrudButton crudAction='Edit' onClick={handleOnChangeToEditMode}/> : <CrudButton crudAction='update' onClick={handleOnUpdateProfileInfo} />
               : <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
           }
           <div className="divider-custom-line"></div>
