@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+
+import { AdminLogedIn } from '../../context/AdminLogedIn';
+
+import { CrudButton } from '../../components/crud-button';
 
 import { useFormik } from 'formik';
 import axios from 'axios';
@@ -12,6 +16,8 @@ const Alert = ({ alertMessage, type }) => {
 }
 
 export const Contact = () => {
+  const adminLogedIn = useContext(AdminLogedIn);
+
   const [error, setError] = useState('');
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -73,7 +79,9 @@ export const Contact = () => {
         <h2 className="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
         <div className="divider-custom">
           <div className="divider-custom-line"></div>
-          <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
+          {
+            adminLogedIn.login ? <CrudButton crudAction='Edit' /> : <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
+          }
           <div className="divider-custom-line"></div>
         </div>
         <h3 className="text-center text-secondary">My Number: (937) - 424 6188</h3>

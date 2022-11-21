@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { AdminLogedIn } from '../../context/AdminLogedIn';
+
+import { CrudButton } from '../../components/crud-button';
 
 export const About = () => {
+  const adminLogedIn = useContext(AdminLogedIn);
+
   return (
     <section className="page-section bg-primary text-white mb-0" id="about">
       <div className="container">
         <h2 className="page-section-heading text-center text-uppercase text-white">About</h2>
         <div className="divider-custom divider-light">
           <div className="divider-custom-line"></div>
-          <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
+          {
+            adminLogedIn.login ? <CrudButton crudAction='Edit' /> : <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
+          }
           <div className="divider-custom-line"></div>
         </div>
         <div className="row">

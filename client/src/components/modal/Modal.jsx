@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ProjectModal = ({ project, autor, image, description, repo, website }) => {
+export const Modal = ({ project, autor, image, description, repo, website }) => {
 
   return (
     <div className="portfolio-modal modal fade" id="portfolioModal1" tabIndex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">

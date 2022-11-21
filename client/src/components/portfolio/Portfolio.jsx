@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { useGetProjects } from '../../hooks/api/getProjects';
+import { AdminLogedIn } from '../../context/AdminLogedIn';
 
 import { Loading } from '../../components/loading';
 import { ServerError } from '../server-error';
-import { ProjectModal } from '../../components/project-modal';
+import { Modal } from '../modal';
+import { CrudButton } from '../../components/crud-button';
 
 export const Portfolio = () => {
+  const adminLogedIn = useContext(AdminLogedIn);
+
   const [singleProject, setSingleProject] = useState([{
     projectName: '',
     projectRepo: '',
@@ -27,7 +31,9 @@ export const Portfolio = () => {
         <h2 className="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
         <div className="divider-custom">
           <div className="divider-custom-line"></div>
-          <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
+          {
+            adminLogedIn.login ? <CrudButton crudAction='Create' /> : <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
+          }
           <div className="divider-custom-line"></div>
         </div>
         {error !== undefined ? <ServerError /> :
@@ -56,7 +62,7 @@ export const Portfolio = () => {
             }
           </div>
         }
-        <ProjectModal 
+        <Modal 
           project={singleProject[0].projectName}
           autor={singleProject[0].projectAutor}
           image={singleProject[0].projectImage}

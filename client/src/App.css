@@ -11602,6 +11602,18 @@ html {
   justify-content: space-around;
 }
 
+.crud-button-style {
+  border-radius: 40px;
+  color: #2d3d4f;
+  font-weight: bold;
+  box-shadow: 5px 5px 5px;
+  background-color: aliceblue;
+}
+
+.crud-button-style:hover {
+  box-shadow: 5px 5px 5px;
+}
+
 @media (min-width: 375px) {
 .login-as-admin-window {
   display: flex;
