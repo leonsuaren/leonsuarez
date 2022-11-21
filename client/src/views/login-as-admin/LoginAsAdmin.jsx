@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { Loading } from '../../components/loading';
+import { AdminLogedIn } from '../../context/AdminLogedIn';
 
 import axios from 'axios';
 import { useFormik } from 'formik';
 
 export const LoginAsAdmin = () => {
+  const adminLogedIn = useContext(AdminLogedIn);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [nameSuccess, setNameSuccess] = useState(true);
@@ -23,6 +25,7 @@ export const LoginAsAdmin = () => {
         { adminName: values.adminName, password: values.password }
       ).then((response) => {
         localStorage.setItem('token', response.data.token);
+        adminLogedIn.setLogin(true);
         setLoading(true);
         setTimeout(() => {
           navigate('/');

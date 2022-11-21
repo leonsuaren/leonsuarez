@@ -45,8 +45,6 @@ export const Header = () => {
   }, []);
   if (!profile) return null;
 
-  console.log(profile);
-
   const handleOnChangeToEditMode = () => {
     setEditMode(true);
   };
