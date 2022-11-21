@@ -15,9 +15,20 @@ exports.getProfileInfo = async (req, res) => {
   console.log(profileLanguage);
   try {
     const profileInfo = await ProfileInfo.findOne({ profileLanguage: profileLanguage });
-    console.log(profileInfo);
     res.status(200).json({ message: 'Profile found success!', profileInfo: profileInfo });
   } catch (error) {
     res.status(500).json({ error: error });
   }
 };
+
+exports.updateProfileInfo = async (req, res) => {
+  const { profileName, profileTitle, profileLanguage } = req.body;
+  console.log(profileLanguage)
+  try {
+    const updatedProfileInfo = await ProfileInfo.updateOne({ profileLanguage: profileLanguage }, { $set: { profileName: profileName ,profileTitle: profileTitle } });
+    console.log(updatedProfileInfo);
+    res.status(204).json({ message: 'Profile updated success!', updatedProfileInfo: updatedProfileInfo });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+}
