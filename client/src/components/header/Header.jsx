@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 
 import { AdminLogedIn } from '../../context/AdminLogedIn';
 import { CrudButton } from '../../components/crud-button';
+import { Loading } from '../../components/loading';
 
 export const Header = () => {
   const adminLogedIn = useContext(AdminLogedIn);
@@ -16,15 +17,12 @@ export const Header = () => {
   const formik = useFormik({
     initialValues: {
       profileLanguage: 'English',
-      profileName: '',
-      profileTitle: ''
+      profileName: profile.profileName,
+      profileTitle: profile.profileTitle
     },
     onSubmit: async values => {
       await axios.put('http://localhost:8080/api/profile/update-profile-info',
         { profileName: values.profileName, profileTitle: values.profileTitle, profileLanguage: values.profileLanguage })
-        .then((response) => {
-          console.log(response, 'edit');
-        })
         .catch((error) => {
           console.log(error);
         });
@@ -67,46 +65,65 @@ export const Header = () => {
 
   return (
     <header className="masthead bg-primary text-white text-center" id='page-top'>
-      <form className="container d-flex align-items-center flex-column" onSubmit={formik.handleSubmit}>
-        <img className="masthead-avatar mb-5" src="./leonsuarezavataredited_ccexpress.png" alt="Leon Suarez" />
-        {
-          editMode ?
-            <div>
-              {
-                !loading && <input className="masthead-heading text-uppercase mb-0 edit-input" id='profileName' placeholder='Name' value={formik.values.profileName} onChange={formik.handleChange} />
-              }
-            </div>
-            :
+      {
+        adminLogedIn.login ?
+         <form className="container d-flex align-items-center flex-column" onSubmit={formik.handleSubmit}>
+          <img className="masthead-avatar mb-5" src="./leonsuarezavataredited_ccexpress.png" alt="Leon Suarez" />
+          {
+            editMode ?
+              <div>
+                {
+                  <input className="masthead-heading text-uppercase mb-0 edit-input" id='profileName' placeholder={profile.profileName} value={formik.values.profileName} onChange={formik.handleChange} />
+                }
+              </div>
+              :
+              <div>
+                {
+                  loading ? <Loading size='small'/> : <h1 className="masthead-heading text-uppercase mb-0">{profile.profileName}</h1>
+                }
+              </div>
+          }
+          <div className="divider-custom divider-light">
+            <div className="divider-custom-line"></div>
+            {
+                !editMode ? <CrudButton crudAction='Edit' onClick={handleOnChangeToEditMode}/> : <CrudButton crudAction='update' onClick={handleOnUpdateProfileInfo} />
+            }
+            <div className="divider-custom-line"></div>
+          </div>
+          {
+            editMode ?
+              <div>
+                {
+                  <input className="masthead-subheading text-capitalized font-weight-light mb-0 edit-input" id='profileTitle' placeholder={profile.profileTitle} value={formik.values.profileTitle} onChange={formik.handleChange} />
+                }
+              </div>
+              :
+              <div>
+                {
+                  loading ? <Loading size='small'/> :  <p className="masthead-subheading font-weight-light mb-0">{profile.profileTitle}</p>
+                }
+              </div>
+          }
+        </form> :
+          <div className="container d-flex align-items-center flex-column">
+            <img className="masthead-avatar mb-5" src="./leonsuarezavataredited_ccexpress.png" alt="Leon Suarez" />
             <div>
               {
                 !loading && <h1 className="masthead-heading text-uppercase mb-0">{profile.profileName}</h1>
               }
             </div>
-        }
-        <div className="divider-custom divider-light">
-          <div className="divider-custom-line"></div>
-          {
-            adminLogedIn.login ?
-              !editMode ? <CrudButton crudAction='Edit' onClick={handleOnChangeToEditMode}/> : <CrudButton crudAction='update' onClick={handleOnUpdateProfileInfo} />
-              : <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
-          }
-          <div className="divider-custom-line"></div>
-        </div>
-        {
-          editMode ?
-            <div>
-              {
-                !loading && <input className="masthead-subheading font-weight-light mb-0 edit-input" id='profileTitle' placeholder='Title' value={formik.values.profileTitle} onChange={formik.handleChange} />
-              }
+            <div className="divider-custom divider-light">
+              <div className="divider-custom-line"></div>
+              <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
+              <div className="divider-custom-line"></div>
             </div>
-            :
             <div>
               {
                 !loading && <p className="masthead-subheading font-weight-light mb-0">{profile.profileTitle}</p>
               }
             </div>
-        }
-      </form>
+          </div>
+      }
       <div className="text-center mt-4">
         <a className={adminLogedIn.login ? "btn btn-xl btn-outline-light disabled" : "btn btn-xl btn-outline-light"} target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/leon-suarez/">
           LinkedIn

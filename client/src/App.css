@@ -11514,10 +11514,16 @@ html {
   
 }
 
-.spinner-style {
+.spinner-large {
   width: 150px;
   height: 150px;
   font-size: 2rem;
+}
+
+.spinner-small {
+  width: 50px;
+  height: 50px;
+  font-size: 1rem;
 }
 
 .portfolio-grid {
@@ -11620,6 +11626,10 @@ html {
   border-radius: 20px;
   border: none;
   text-align: center;
+}
+
+.text-capitalized {
+  text-transform: capitalize;
 }
 
 @media (min-width: 375px) {
