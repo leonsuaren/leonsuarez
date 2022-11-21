@@ -11614,6 +11614,14 @@ html {
   box-shadow: 5px 5px 5px;
 }
 
+.edit-input {
+  color: white;
+  background-color: #1bbc9b;
+  border-radius: 20px;
+  border: none;
+  text-align: center;
+}
+
 @media (min-width: 375px) {
 .login-as-admin-window {
   display: flex;
