@@ -100,7 +100,7 @@ export const Header = () => {
               :
               <div>
                 {
-                  loading ? <Loading size='small'/> :  <p className="masthead-subheading font-weight-light mb-0">{profile.profileTitle}</p>
+                  loading ? <Loading size='small'/> :  <p className="masthead-subheading text-capitalized font-weight-light mb-0">{profile.profileTitle}</p>
                 }
               </div>
           }

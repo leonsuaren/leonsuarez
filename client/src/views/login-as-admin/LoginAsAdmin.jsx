@@ -46,7 +46,7 @@ export const LoginAsAdmin = () => {
   return (
     <div className='login-as-admin-body'>
       {
-        loading ? <Loading spinnerStyle='light' /> :
+        loading ? <Loading spinnerStyle='light' size='large'/> :
           <div className='login-as-admin-window'>
             <div className='login-as-admin-inner-div'>
               <div className='login-as-admin-wrapper'>

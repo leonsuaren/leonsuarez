@@ -13,6 +13,14 @@ const ProfileInfoSchema = new mongoose.Schema({
     type: String,
     require: true
   },
+  profileNumber: {
+    type: String,
+    require: true
+  },
+  profileEmail: {
+    type: String,
+    require: true
+  },
   profileLanguage: {
     type: String,
     require: true
