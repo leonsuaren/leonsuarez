@@ -1,19 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { AdminLogedIn } from '../../context/AdminLogedIn';
+import { Loading } from '../../components/loading';
 
 export const Navigation = () => {
   const adminLogedIn = useContext(AdminLogedIn);
+  const [loading, setLoading] = useState(false);
 
   const handleOnLoginOut = () => {
     localStorage.removeItem("token");
     adminLogedIn.setLogin(false);
-  }
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
       <div className="container">
-        <a className="navbar-brand" href="#page-top">Leon Suarez</a>
+        { loading ? <Loading size='small' spinnerStyle='light'/> : <a className="navbar-brand" href="#page-top">"Leon Suarez"</a>}
         <button className="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
             <i className="fas fa-bars"></i>

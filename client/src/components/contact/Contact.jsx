@@ -64,7 +64,6 @@ export const Contact = () => {
     }, 3000);
   };
 
-  console.log(profile);
   return (
     <section className="page-section" id="contact">
       <div className="container">
