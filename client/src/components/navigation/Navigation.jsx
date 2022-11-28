@@ -1,11 +1,29 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+
+import axios from 'axios';
 
 import { AdminLogedIn } from '../../context/AdminLogedIn';
 import { Loading } from '../../components/loading';
 
 export const Navigation = () => {
   const adminLogedIn = useContext(AdminLogedIn);
+  const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchProfileInfo = async () => {
+      setLoading(true);
+      await axios.post('http://localhost:8080/api/profile/profile-info', { profileLanguage: "English" }).then((response) => {
+        setProfile(response.data.profileInfo);
+        console.log(response.data.profileInfo);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      }).catch((error) => { console.log(error) })
+    };
+    fetchProfileInfo();
+  }, []);
+  if (!profile) return null;
 
   const handleOnLoginOut = () => {
     localStorage.removeItem("token");
@@ -15,7 +33,7 @@ export const Navigation = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
       <div className="container">
-        { loading ? <Loading size='small' spinnerStyle='light'/> : <a className="navbar-brand" href="#page-top">"Leon Suarez"</a>}
+        { loading ? <Loading size='small' spinnerStyle='light'/> : <a className="navbar-brand" href="#page-top">"{`${profile.profileName}`}"</a>}
         <button className="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
             <i className="fas fa-bars"></i>

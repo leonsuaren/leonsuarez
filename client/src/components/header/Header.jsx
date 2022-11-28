@@ -9,7 +9,7 @@ import { Loading } from '../../components/loading';
 
 export const Header = () => {
   const adminLogedIn = useContext(AdminLogedIn);
-  const [loading, setLoadind] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState({});
   const [error, setError] = useState(null);
   const [editMode, setEditMode] = useState(false);
@@ -31,11 +31,11 @@ export const Header = () => {
 
   useEffect(() => {
     const fetchProfileInfo = async () => {
-      setLoadind(true);
+      setLoading(true);
       await axios.post('http://localhost:8080/api/profile/profile-info', { profileLanguage: "English" }).then((response) => {
         setProfile(response.data.profileInfo);
         setTimeout(() => {
-          setLoadind(false);
+          setLoading(false);
         }, 1000);
       }).catch((error) => { console.log(error) })
     };
@@ -51,11 +51,11 @@ export const Header = () => {
     setEditMode(false);
     setTimeout(() => {
       const fetchProfileInfo = async () => {
-        setLoadind(true);
+        setLoading(true);
         await axios.post('http://localhost:8080/api/profile/profile-info', { profileLanguage: "English" }).then((response) => {
           setProfile(response.data.profileInfo);
           setTimeout(() => {
-            setLoadind(false);
+            setLoading(false);
           }, 100);
         }).catch((error) => { console.log(error) })
       };
