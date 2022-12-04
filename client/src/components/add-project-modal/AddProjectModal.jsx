@@ -1,6 +1,22 @@
 import React from 'react';
+import { useFormik } from 'formik';
 
 export const AddProjectModal = () => {
+
+  const formik = useFormik({
+    initialValues: {
+      projectName: '',
+      projectAutor: '',
+      projectDescription: '',
+      projectRepository: '',
+      projectWebsite: '',
+      projectImage: ''
+    },
+    onSubmit: values => {
+      console.log(values);
+    }
+  });
+
   return (
     <div className="portfolio-modal modal fade" id="addProjectModal" tabIndex="-1" aria-labelledby="addProjectModal" aria-hidden="true">
       <div className="modal-dialog modal-xl">
@@ -19,13 +35,12 @@ export const AddProjectModal = () => {
                     <div className="divider-custom-line"></div>
                   </div>
                   <div className="modal-body">
-                    <form className="">
+                    <form>
                       <div className="form-floating mb-3">
                         <input className="form-control" id="contactName" type="text" placeholder="Enter your name..." data-sb-validations="required"
                         />
                         <label htmlFor="name">Name</label>
-                        {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
-                      }
+     
                       </div>
                       <div className="form-floating mb-3">
                         <input className="form-control" id="contactName" type="text" placeholder="Enter your name..." data-sb-validations="required"
@@ -64,11 +79,11 @@ export const AddProjectModal = () => {
                       </div>
                     </form>
                   </div>
-                  <div className="modal-footer">
+                  <div>
                     <button className="btn btn-danger button-margin" type="button" data-bs-dismiss="modal" aria-label="Close">
                       Cancel
                     </button>
-                    <button className="btn btn-primary button-margin" >
+                    <button className="btn btn-primary button-margin" type="submit" >
                       Create Project
                     </button>
                   </div>
@@ -78,6 +93,6 @@ export const AddProjectModal = () => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
