@@ -6,7 +6,7 @@ import { AdminLogedIn } from '../../context/AdminLogedIn';
 import { Loading } from '../../components/loading';
 import { ServerError } from '../server-error';
 import { Modal } from '../modal';
-import { CrudButton } from '../../components/crud-button';
+import { AddProjectModal } from '../../components/add-project-modal';
 
 export const Portfolio = () => {
   const adminLogedIn = useContext(AdminLogedIn);
@@ -32,13 +32,18 @@ export const Portfolio = () => {
         <div className="divider-custom">
           <div className="divider-custom-line"></div>
           {
-            adminLogedIn.login ? <CrudButton crudAction='Create' /> : <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
+            adminLogedIn.login ?
+              <div>
+                <button className='btn btn-xl btn-outline-light crud-button-style' data-bs-toggle="modal" data-bs-target="#addProjectModal">Create</button>
+                <AddProjectModal />
+              </div>
+              : <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
           }
           <div className="divider-custom-line"></div>
         </div>
         {error !== undefined ? <ServerError /> :
           <div>
-            {loading ? <div className='text-center align-items-center justify-content-center h-100 w-100'><Loading spinnerStyle='success' size='large'/></div> :
+            {loading ? <div className='text-center align-items-center justify-content-center h-100 w-100'><Loading spinnerStyle='success' size='large' /></div> :
               <div className="portfolio-grid">
                 {
                   projects.map((project, key) => {
@@ -62,7 +67,7 @@ export const Portfolio = () => {
             }
           </div>
         }
-        <Modal 
+        <Modal
           project={singleProject[0].projectName}
           autor={singleProject[0].projectAutor}
           image={singleProject[0].projectImage}
