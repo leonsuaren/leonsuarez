@@ -35,57 +35,66 @@ export const AddProjectModal = () => {
                     <div className="divider-custom-line"></div>
                   </div>
                   <div className="modal-body">
-                    <form>
+                    <form onSubmit={formik.handleSubmit}>
                       <div className="form-floating mb-3">
-                        <input className="form-control" id="contactName" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                        <input className="form-control capitalized" id="projectName" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                          value={formik.values.projectName}
+                          onChange={formik.handleChange}
                         />
-                        <label htmlFor="name">Name</label>
-     
+                        <label htmlFor="name">Project Name</label>
                       </div>
                       <div className="form-floating mb-3">
-                        <input className="form-control" id="contactName" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                        <input className="form-control capitalized" id="projectAutor" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                          value={formik.values.projectAutor}
+                          onChange={formik.handleChange}
                         />
                         <label htmlFor="name">Autor</label>
                         {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
-                      }
+                        }
                       </div>
                       <div className="form-floating mb-3">
-                        <input className="form-control" id="contactName" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                        <input className="form-control" id="projectDescription" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                          value={formik.values.projectDescription}
+                          onChange={formik.handleChange}
                         />
                         <label htmlFor="name">Description</label>
                         {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
-                      }
+                        }
                       </div>
                       <div className="form-floating mb-3">
-                        <input className="form-control" id="contactName" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                        <input className="form-control" id="projectRepository" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                          value={formik.values.projectRepository}
+                          onChange={formik.handleChange}
                         />
                         <label htmlFor="name">Repository</label>
                         {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
-                      }
+                        }
                       </div>
                       <div className="form-floating mb-3">
-                        <input className="form-control" id="contactName" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                        <input className="form-control" id="projectWebsite" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                          value={formik.values.projectWebsite}
+                          onChange={formik.handleChange}
                         />
                         <label htmlFor="name">Website</label>
                         {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
-                      }
+                        }
                       </div>
                       <div className="form-floating mb-3">
                         <input className="form-control" id="contactName" type="text" placeholder="Enter your name..." data-sb-validations="required"
                         />
                         <label htmlFor="name">Image</label>
                         {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
-                      }
+                        }
+                      </div>
+                      <div>
+                        <button className="btn btn-danger button-margin" type="button" data-bs-dismiss="modal" aria-label="Close">
+                          Cancel
+                        </button>
+                        <button className="btn btn-primary button-margin" type="submit" id="submitButton">
+                          Create Project
+                        </button>
                       </div>
                     </form>
-                  </div>
-                  <div>
-                    <button className="btn btn-danger button-margin" type="button" data-bs-dismiss="modal" aria-label="Close">
-                      Cancel
-                    </button>
-                    <button className="btn btn-primary button-margin" type="submit" >
-                      Create Project
-                    </button>
                   </div>
                 </div>
               </div>

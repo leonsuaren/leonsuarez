@@ -11509,6 +11509,10 @@ html {
   background-color: #1a252f;
 }
 
+.capitalized {
+  text-transform: capitalize;
+}
+
 .button-margin {
   margin: 0 10px;
   
