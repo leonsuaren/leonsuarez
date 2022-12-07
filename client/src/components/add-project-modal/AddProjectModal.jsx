@@ -53,15 +53,6 @@ export const AddProjectModal = () => {
                         }
                       </div>
                       <div className="form-floating mb-3">
-                        <input className="form-control" id="projectDescription" type="text" placeholder="Enter your name..." data-sb-validations="required"
-                          value={formik.values.projectDescription}
-                          onChange={formik.handleChange}
-                        />
-                        <label htmlFor="name">Description</label>
-                        {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
-                        }
-                      </div>
-                      <div className="form-floating mb-3">
                         <input className="form-control" id="projectRepository" type="text" placeholder="Enter your name..." data-sb-validations="required"
                           value={formik.values.projectRepository}
                           onChange={formik.handleChange}
@@ -80,9 +71,16 @@ export const AddProjectModal = () => {
                         }
                       </div>
                       <div className="form-floating mb-3">
-                        <input className="form-control" id="contactName" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                        <textarea className="form-control" id="projectDescription" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                          value={formik.values.projectDescription}
+                          onChange={formik.handleChange}
                         />
-                        <label htmlFor="name">Image</label>
+                        <label htmlFor="name">Description</label>
+                        {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
+                        }
+                      </div>
+                      <div className="form-floating mb-3">
+                        <button className="form-control" id="projectImage" type="file" data-sb-validations="required">Select an Image</button>
                         {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
                         }
                       </div>
