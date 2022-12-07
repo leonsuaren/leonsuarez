@@ -1,19 +1,51 @@
 import React from 'react';
+
 import { useFormik } from 'formik';
+import axios from 'axios';
 
 export const AddProjectModal = () => {
 
   const formik = useFormik({
+    validate: values => {
+      const errors = {};
+
+      if (!values.projectName) {
+        errors.projectName = "Please Enter a Name"
+      }
+      if (!values.projectAutor) {
+        errors.projectAutor = "Please Enter an Autor"
+      }
+      if (!values.projectRepo) {
+        errors.projectRepo = "Please Enter a Github Repository"
+      }
+      if (!values.projectWebsite) {
+        errors.projectWebsite = "Please Enter a Website"
+      }
+      if (!values.projectDescription) {
+        errors.projectDescription = "Please Enter a Description"
+      }
+      return errors;
+    },
     initialValues: {
       projectName: '',
       projectAutor: '',
       projectDescription: '',
-      projectRepository: '',
+      projectRepo: '',
       projectWebsite: '',
       projectImage: ''
     },
-    onSubmit: values => {
-      console.log(values);
+    onSubmit: async values => {
+      await axios.post('http://localhost:8080/api/projects/create-project', {
+        projectName: values.projectName,
+        projectAutor: values.projectAutor,
+        projectDescription: values.projectDescription,
+        projectRepo: values.projectRepo,
+        projectWebsite: values.projectWebsite
+      }).then((response) => {
+        console.log(response);
+      }).catch((error) => {
+        console.log(error);
+      });
     }
   });
 
@@ -42,6 +74,7 @@ export const AddProjectModal = () => {
                           onChange={formik.handleChange}
                         />
                         <label htmlFor="name">Project Name</label>
+                         {formik.errors.projectName ? <div className='form-field-error'>{formik.errors.projectName}</div> : ''}
                       </div>
                       <div className="form-floating mb-3">
                         <input className="form-control capitalized" id="projectAutor" type="text" placeholder="Enter your name..." data-sb-validations="required"
@@ -49,17 +82,15 @@ export const AddProjectModal = () => {
                           onChange={formik.handleChange}
                         />
                         <label htmlFor="name">Autor</label>
-                        {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
-                        }
+                        {formik.errors.projectAutor ? <div className='form-field-error'>{formik.errors.projectAutor}</div> : ''}
                       </div>
                       <div className="form-floating mb-3">
-                        <input className="form-control" id="projectRepository" type="text" placeholder="Enter your name..." data-sb-validations="required"
-                          value={formik.values.projectRepository}
+                        <input className="form-control" id="projectRepo" type="text" placeholder="Enter your name..." data-sb-validations="required"
+                          value={formik.values.projectRepo}
                           onChange={formik.handleChange}
                         />
                         <label htmlFor="name">Repository</label>
-                        {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
-                        }
+                        {formik.errors.projectRepo ? <div className='form-field-error'>{formik.errors.projectRepo}</div> : ''}
                       </div>
                       <div className="form-floating mb-3">
                         <input className="form-control" id="projectWebsite" type="text" placeholder="Enter your name..." data-sb-validations="required"
@@ -67,8 +98,7 @@ export const AddProjectModal = () => {
                           onChange={formik.handleChange}
                         />
                         <label htmlFor="name">Website</label>
-                        {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
-                        }
+                        {formik.errors.projectWebsite ? <div className='form-field-error'>{formik.errors.projectWebsite}</div> : ''}
                       </div>
                       <div className="form-floating mb-3">
                         <textarea className="form-control" id="projectDescription" type="text" placeholder="Enter your name..." data-sb-validations="required"
@@ -76,8 +106,7 @@ export const AddProjectModal = () => {
                           onChange={formik.handleChange}
                         />
                         <label htmlFor="name">Description</label>
-                        {// {error.contactName ? <div className='form-field-error'>{error.contactName}</div> : ''}
-                        }
+                        {formik.errors.projectDescription ? <div className='form-field-error'>{formik.errors.projectDescription}</div> : ''}
                       </div>
                       <div className="form-floating mb-3">
                         <button className="form-control" id="projectImage" type="file" data-sb-validations="required">Select an Image</button>
@@ -88,7 +117,7 @@ export const AddProjectModal = () => {
                         <button className="btn btn-danger button-margin" type="button" data-bs-dismiss="modal" aria-label="Close">
                           Cancel
                         </button>
-                        <button className="btn btn-primary button-margin" type="submit" id="submitButton">
+                        <button className="btn btn-primary button-margin" type="submit" id="submitButton" >
                           Create Project
                         </button>
                       </div>
