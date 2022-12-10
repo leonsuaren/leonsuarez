@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { useFormik } from 'formik';
 import axios from 'axios';
+
 import { Loading } from '../loading';
 
 const Alert = ({ message, alertType }) => {
@@ -12,7 +13,7 @@ const Alert = ({ message, alertType }) => {
   )
 }
 
-export const AddProjectModal = () => {
+export const AddProject = () => {
   const [alert, setAlert] = useState('success');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -72,15 +73,16 @@ export const AddProjectModal = () => {
     }
   });
 
-  console.log(message, alert);
-
   const handleOnCancelCreateProject = () => {
     formik.resetForm();
   }
 
+  // const createProjectModal = new bootstrap.Modal('#createProjectModal', {
+  //   keyboard: false
+  // });
+  // createProjectModal.hide();
+
   return (
-    <div className="portfolio-modal modal fade" id="addProjectModal" tabIndex="-1" aria-labelledby="addProjectModal" aria-hidden="true">
-      <div className="modal-dialog modal-xl">
         <div className="modal-content">
           <div className="modal-header border-0"><button className="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" onClick={handleOnCancelCreateProject}></button></div>
           <div className="modal-body text-center pb-5">
@@ -103,7 +105,7 @@ export const AddProjectModal = () => {
                         }
                       </div> : ''
                   }
-                  <div className="modal-body">
+                  <div className="modal-body" id='createProjectModal'>
                     <form onSubmit={formik.handleSubmit}>
                       <div className="form-floating mb-3">
                         <input className="form-control capitalized" id="projectName" name='projectName' type="text" placeholder="Enter your name..." data-sb-validations="required"
@@ -177,7 +179,5 @@ export const AddProjectModal = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
   )
 }

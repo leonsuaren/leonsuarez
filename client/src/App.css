@@ -11518,6 +11518,16 @@ html {
   
 }
 
+.portfolio-item-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.project-crud-action-button {
+  height: 100%;
+  border-radius: 0;
+}
+
 .spinner-large {
   width: 150px;
   height: 150px;
