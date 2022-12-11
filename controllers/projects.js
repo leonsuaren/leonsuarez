@@ -34,3 +34,13 @@ exports.allProjects = async (req, res) => {
     res.status(400).json({ error: error });
   }
 }
+
+exports.deleteProject = async (req, res) => {
+  const { projectId } = req.body;
+  try {
+    const project = await Projects.deleteOne({ _id: projectId });
+    res.status(201).json({ project: project });
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
+}
