@@ -90,7 +90,7 @@ export const Contact = () => {
                       <input className="masthead-subheading font-weight-light mb-0 edit-contact-input" id='profileNumber' placeholder={profile.profileNumber} value={formik.values.profileNumber} onChange={formik.handleChange} />
                     </h3>
                     <h3>My Email:
-                    <input className="masthead-subheading font-weight-light mb-0 edit-contact-input" id='profileEmail' placeholder={profile.profileEmail} value={formik.values.profileEmail} onChange={formik.handleChange} />
+                    <input className="masthead-subheading font-weight-light mb-0 edit-contact-input" id='profileEmail' role='textbox' placeholder={profile.profileEmail} value={formik.values.profileEmail} onChange={formik.handleChange} />
                     </h3>
                   </div>
               }

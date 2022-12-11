@@ -5,6 +5,6 @@ const { allProjects, createProject, deleteProject } = require('../controllers/pr
 
 router.route('/').get(allProjects);
 router.route('/create-project').post(createProject);
-router.route('/delete-project').delete(deleteProject);
+router.route('/delete-project').post(deleteProject);
 
 module.exports = router;

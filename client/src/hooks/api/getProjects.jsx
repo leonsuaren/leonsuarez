@@ -5,11 +5,11 @@ export const useGetProjects = () => {
   const [loading, setLoading] = useState(false);
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState();
-
+  console.log(projects);
   useEffect(() => {
     setLoading(true);
     axios.get('http://localhost:8080/api/projects').then((response) => {
-      setProjects(response.data.projects)
+      setProjects([].concat(response.data.projects).reverse())
       setTimeout(() => {
         setLoading(false);
       }, 3000)
@@ -19,5 +19,5 @@ export const useGetProjects = () => {
     });
   }, []);
 
-  return [loading, projects, error];
+  return [loading, projects, error, setLoading, setProjects, setError];
 }

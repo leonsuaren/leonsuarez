@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import { useGetProjects } from '../../hooks/api/getProjects';
-import { AdminLogedIn } from '../../context/AdminLogedIn';
+import { AdminLogedIn, ProjectsContext } from '../../context';
 
 import { Loading } from '../../components/loading';
 import { ServerError } from '../server-error';
@@ -12,7 +11,10 @@ import { DeleteProject } from '../../components/delete-project';
 
 export const Portfolio = () => {
   const adminLogedIn = useContext(AdminLogedIn);
-  const [loading, projects, error] = useGetProjects();
+  const projectsContext = useContext(ProjectsContext);
+  const projects = [].concat(projectsContext.projects).reverse();
+  const error = projectsContext.error;
+  const loading = projectsContext.loading;
 
   const [singleProject, setSingleProject] = useState([{
     projectName: '',
@@ -97,7 +99,7 @@ export const Portfolio = () => {
           </div>
         }
         <Modal modalName='deleteProjectModal'>
-        <DeleteProject projectID={singleProject[0]._id}/>
+        <DeleteProject projectId={singleProject[0]._id} project={singleProject[0]}/>
         </Modal>
       </div>
     </section>

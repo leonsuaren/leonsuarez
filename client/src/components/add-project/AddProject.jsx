@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ProjectsContext } from '../../context';
 
 import { useFormik } from 'formik';
 import axios from 'axios';
@@ -14,6 +15,8 @@ const Alert = ({ message, alertType }) => {
 }
 
 export const AddProject = () => {
+  const projectsContext = useContext(ProjectsContext);
+  const projects = projectsContext.projects;
   const [alert, setAlert] = useState('success');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -56,6 +59,7 @@ export const AddProject = () => {
         projectRepo: values.projectRepo,
         projectWebsite: values.projectWebsite
       }).then((response) => {
+        projectsContext.setProjects([...projects, response.data.project]);
         setMessage(response.data.message);
         setAlert('success');
         setLoading(true);
