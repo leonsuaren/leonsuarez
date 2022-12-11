@@ -8,6 +8,7 @@ import { ServerError } from '../server-error';
 import { Modal } from '../modal';
 import { AddProject } from '../../components/add-project';
 import { ReadProject } from '../../components/read-project';
+import { DeleteProject } from '../../components/delete-project';
 
 export const Portfolio = () => {
   const adminLogedIn = useContext(AdminLogedIn);
@@ -26,6 +27,7 @@ export const Portfolio = () => {
     const singleProject = projects.filter(project => project._id === projectID);
     setSingleProject(singleProject);
   }
+
   return (
     <section className="page-section portfolio" id="portfolio">
       <div className="container">
@@ -62,7 +64,7 @@ export const Portfolio = () => {
                                 <div className="portfolio-item mx-auto" onClick={() => handleOnSingleProject(project._id)}>
                                   <div className="portfolio-item-caption portfolio-item-grid align-items-center justify-content-center h-100 w-100">
                                     <button className='btn btn-success project-crud-action-button' onClick={() => console.log('edit')}>Edit</button>
-                                    <button className='btn btn-danger project-crud-action-button' onClick={() => console.log('delete')}>delete</button>
+                                    <button className='btn btn-danger project-crud-action-button' data-bs-toggle="modal" data-bs-target="#deleteProjectModal" onClick={() => handleOnSingleProject(project._id)}>delete</button>
                                   </div>
                                   <img className="img-fluid" src={project.projectImage} alt={project.projectName} />
                                 </div>
@@ -94,6 +96,9 @@ export const Portfolio = () => {
             }
           </div>
         }
+        <Modal modalName='deleteProjectModal'>
+        <DeleteProject projectID={singleProject[0]._id}/>
+        </Modal>
       </div>
     </section>
   )

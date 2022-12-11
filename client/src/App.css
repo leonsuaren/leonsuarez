@@ -11515,7 +11515,6 @@ html {
 
 .button-margin {
   margin: 0 10px;
-  
 }
 
 .portfolio-item-grid {
@@ -11526,6 +11525,7 @@ html {
 .project-crud-action-button {
   height: 100%;
   border-radius: 0;
+  text-transform: uppercase;
 }
 
 .spinner-large {

@@ -83,7 +83,7 @@ export const AddProject = () => {
   // createProjectModal.hide();
 
   return (
-        <div className="modal-content">
+        <div>
           <div className="modal-header border-0"><button className="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" onClick={handleOnCancelCreateProject}></button></div>
           <div className="modal-body text-center pb-5">
             <div className="container">
