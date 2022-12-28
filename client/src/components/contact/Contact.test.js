@@ -1,7 +1,15 @@
-import { render, screen } from '@testing-library/react';
-import Contact from './Contact';
+import { render, screen, cleanup, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom/extend-expect';
+import { Contact } from './Contact';
+import { AdminLogedInProvider } from '../../context';
 
-test('inputs should be initially empty', () => {
-  render(<Contact />);
-  const nameInputElement = screen.getByRole('textbox');
-});
+afterEach(cleanup);
+
+const renderAdminLogedInContext = (login) => {
+  return  render(
+    <AdminLogedInProvider value={{ login: login }}>
+      <Contact />
+    </AdminLogedInProvider>
+  );
+}

@@ -1,21 +1,39 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { ProjectsContext } from '../../context';
+import { Loading } from '../loading';
+
+const Alert = ({ message, alertType }) => {
+  return (
+    <div className={`alert alert-${alertType}`} role="alert">
+      {message}
+    </div>
+  )
+}
 
 export const DeleteProject = ({ projectId, project }) => {
   const projectsContext = useContext(ProjectsContext);
   const projects = projectsContext.projects;
-  const loading = projectsContext.loading;
   const error = projectsContext.error;
-
-  console.log(project);
+  const [loading, setLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleOnDeleteProject = async () => {
-     await axios.post('http://localhost:8080/api/projects/delete-project', { projectId: projectId }).then((response) => {
+    setLoading(true);
+    setShowAlert(false);
+    await axios.post('http://localhost:8080/api/projects/delete-project', { projectId: projectId }).then((response) => {
+      setTimeout(() => {
+        setLoading(false);
+        setShowAlert(true);
+      }, 3000);
       setTimeout(() => {
         const singleProjectDelete = projects.filter((project) => project._id !== projectId);
         projectsContext.setProjects(singleProjectDelete);
-      }, 3000);
+        document.getElementById("deleteProjectModal").classList.remove("show", "d-block", "modal-open");
+        document.querySelectorAll(".modal-backdrop")
+            .forEach(el => el.classList.remove("modal-backdrop"));
+        setShowAlert(false);
+      }, 4000);
     }).catch((error) => {
       console.log(error);
     });
@@ -29,19 +47,26 @@ export const DeleteProject = ({ projectId, project }) => {
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div>
-                <h3 className=" text-secondary text-uppercase mb-singleP">{`Are you sure you want to delete ${project.projectName} project?`}</h3>
+                {
+                  !loading && !showAlert ? <h3 className=" text-secondary text-uppercase mb-singleP">{`Are you sure you want to delete ${project.projectName} project?`}</h3> :
+                    <div>
+                      {
+                        !loading && showAlert ? <Alert message={`${project.projectName} project delete success!`} alertType='success' /> : <Loading />
+                      }
+                    </div>
+                }
               </div>
               <div className="divider-custom">
                 <div className="divider-custom-line"></div>
                 <div className="divider-custom-icon"><i className="fas fa-star"></i></div>
-                <div className="divider-custom-line"></div> 
+                <div className="divider-custom-line"></div>
               </div>
               <img className="img-fluid rounded mb-5" />
               <button className="btn btn-primary button-margin" rel="noreferrer" type="button" data-bs-dismiss="modal" aria-label="Close">
                 CANCEL
               </button>
-              <button className="btn btn-danger button-margin" rel="noreferrer" 
-              onClick={handleOnDeleteProject}
+              <button className="btn btn-danger button-margin" rel="noreferrer" data-bs-delay={`{"show":0,"hide":150}`}
+                onClick={handleOnDeleteProject}
               >
                 DELETE
               </button>

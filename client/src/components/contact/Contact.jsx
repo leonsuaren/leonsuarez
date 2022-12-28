@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { AdminLogedIn } from '../../context/AdminLogedIn';
 import { CrudButton } from '../../components/crud-button';
 import { ContactInfoForm } from '../../components/contact-info-form';
-import { Loading }  from '../../components/loading';
+import { Loading } from '../../components/loading';
 
 import axios from 'axios';
 import { useFormik } from 'formik';
@@ -67,12 +67,12 @@ export const Contact = () => {
   return (
     <section className="page-section" id="contact">
       <div className="container">
-        <h2 className="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+        <h2 className="page-section-heading text-center text-uppercase text-secondary mb-0" data-testid='header'>Contact Me</h2>
         {
           adminLogedIn.login ?
-            <form className="container d-flex align-items-center flex-column" onSubmit={formik.handleSubmit}>
-              <div className="divider-custom">
-                <div className="divider-custom-line"></div>
+            <form className="container d-flex align-items-center flex-column" onSubmit={formik.handleSubmit} >
+              <div className="divider-custom" data-testid='form-div-element'>
+                <div className="divider-custom-line" ></div>
                 {
                   !editMode ? <CrudButton crudAction='Edit' onClick={handleOnChangeToEditMode} /> : <CrudButton crudAction='update' onClick={handleOnUpdateProfileInfo} />
                 }
@@ -81,16 +81,16 @@ export const Contact = () => {
               {
                 !editMode ?
                   <div className='contact--update-inputs'>
-                    { loading ? <Loading /> : <h3 className="text-center text-secondary">My Number: {profile.profileNumber}</h3>}
-                    { loading ? <Loading /> : <h3 className="text-center text-secondary">My Email: {profile.profileEmail}</h3>}
+                    {loading ? <Loading /> : <h3 className="text-center text-secondary">My Number: {profile.profileNumber}</h3>}
+                    {loading ? <Loading /> : <h3 className="text-center text-secondary">My Email: {profile.profileEmail}</h3>}
                   </div>
                   :
                   <div className='contact--update-inputs'>
-                    <h3 className="text-center text-secondary mb-0 ">My Number:
-                      <input className="masthead-subheading font-weight-light mb-0 edit-contact-input" id='profileNumber' placeholder={profile.profileNumber} value={formik.values.profileNumber} onChange={formik.handleChange} />
-                    </h3>
+                    <label htmlFor='profileNumber' className="text-center text-secondary mb-0 ">My Number:
+                      <input className="masthead-subheading font-weight-light mb-0 edit-contact-input" id='profileNumber' type='text' name='profileNumber' placeholder={profile.profileNumber} value={formik.values.profileNumber} onChange={formik.handleChange} />
+                    </label>
                     <h3>My Email:
-                    <input className="masthead-subheading font-weight-light mb-0 edit-contact-input" id='profileEmail' role='textbox' placeholder={profile.profileEmail} value={formik.values.profileEmail} onChange={formik.handleChange} />
+                    <input className="masthead-subheading font-weight-light mb-0 edit-contact-input" id='profileEmail' placeholder={profile.profileEmail} value={formik.values.profileEmail} onChange={formik.handleChange} />
                     </h3>
                   </div>
               }
