@@ -29,14 +29,15 @@ export const DeleteProject = ({ projectId, project }) => {
       setTimeout(() => {
         const singleProjectDelete = projects.filter((project) => project._id !== projectId);
         projectsContext.setProjects(singleProjectDelete);
-        document.getElementById("deleteProjectModal").classList.remove("show", "d-block", "modal-open");
-        document.querySelectorAll(".modal-backdrop")
-            .forEach(el => el.classList.remove("modal-backdrop"));
+        document.getElementById("deleteProjectModal").classList.remove("show", "d-block");
+        document.querySelectorAll(".modal-backdrop").forEach(el => el.classList.remove("modal-backdrop"));
         setShowAlert(false);
-      }, 4000);
+      }, 5000);
     }).catch((error) => {
       console.log(error);
+      setShowAlert(false);
     });
+    setShowAlert(false);
   }
 
   return (

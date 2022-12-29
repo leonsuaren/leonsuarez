@@ -8,6 +8,7 @@ import { Modal } from '../modal';
 import { AddProject } from '../../components/add-project';
 import { ReadProject } from '../../components/read-project';
 import { DeleteProject } from '../../components/delete-project';
+import { EditProject } from '../../components/edit-project';
 
 export const Portfolio = () => {
   const adminLogedIn = useContext(AdminLogedIn);
@@ -40,8 +41,8 @@ export const Portfolio = () => {
               <div className="divider-custom-line"></div>
               <button className='btn btn-xl btn-outline-light crud-button-style' data-bs-toggle="modal" data-bs-target="#addProjectModal">Create</button>
               <Modal modalName='addProjectModal'>
-              <AddProject/>
-            </Modal>
+                <AddProject />
+              </Modal>
               <div className="divider-custom-line"></div>
             </div>
             :
@@ -65,7 +66,7 @@ export const Portfolio = () => {
                               adminLogedIn.login ?
                                 <div className="portfolio-item mx-auto" onClick={() => handleOnSingleProject(project._id)}>
                                   <div className="portfolio-item-caption portfolio-item-grid align-items-center justify-content-center h-100 w-100">
-                                    <button className='btn btn-success project-crud-action-button' onClick={() => console.log('edit')}>Edit</button>
+                                    <button className='btn btn-success project-crud-action-button' data-bs-toggle="modal" data-bs-target="#editProjectModal" onClick={() => console.log('edit')}>Edit</button>
                                     <button className='btn btn-danger project-crud-action-button' data-bs-toggle="modal" data-bs-target="#deleteProjectModal" onClick={() => handleOnSingleProject(project._id)}>delete</button>
                                   </div>
                                   <img className="img-fluid" src={project.projectImage} alt={project.projectName} />
@@ -76,15 +77,15 @@ export const Portfolio = () => {
                                     <div className="portfolio-item-caption-content text-center text-white">{project.projectName}</div>
                                   </div>
                                   <Modal modalName='readProjectModal'>
-                                  <ReadProject
-                                    project={singleProject[0].projectName}
-                                    autor={singleProject[0].projectAutor}
-                                    image={singleProject[0].projectImage}
-                                    description={singleProject[0].projectDescription}
-                                    repo={singleProject[0].projectRepo}
-                                    website={singleProject[0].projectWebsite}
-                                  />
-                                </Modal>
+                                    <ReadProject
+                                      project={singleProject[0].projectName}
+                                      autor={singleProject[0].projectAutor}
+                                      image={singleProject[0].projectImage}
+                                      description={singleProject[0].projectDescription}
+                                      repo={singleProject[0].projectRepo}
+                                      website={singleProject[0].projectWebsite}
+                                    />
+                                  </Modal>
                                   <img className="img-fluid" src={project.projectImage} alt={project.projectName} />
                                 </div>
                             }
@@ -99,7 +100,10 @@ export const Portfolio = () => {
           </div>
         }
         <Modal modalName='deleteProjectModal'>
-        <DeleteProject projectId={singleProject[0]._id} project={singleProject[0]}/>
+          <DeleteProject projectId={singleProject[0]._id} project={singleProject[0]} />
+        </Modal>
+        <Modal modalName='editProjectModal'>
+          <EditProject projectId={singleProject[0]._id} project={singleProject[0]} />
         </Modal>
       </div>
     </section>

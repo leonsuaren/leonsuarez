@@ -59,7 +59,6 @@ export const AddProject = () => {
         projectRepo: values.projectRepo,
         projectWebsite: values.projectWebsite
       }).then((response) => {
-        projectsContext.setProjects([...projects, response.data.project]);
         setMessage(response.data.message);
         setAlert('success');
         setLoading(true);
@@ -67,8 +66,12 @@ export const AddProject = () => {
           setLoading(false);
         }, 3000);
         setTimeout(() => {
+          projectsContext.setProjects([...projects, response.data.project]);
           setMessage('');
           formik.resetForm();
+          document.getElementById("addProjectModal").classList.remove("show", "d-block");
+          document.querySelectorAll(".modal-backdrop").forEach(el => el.classList.remove("modal-backdrop"));
+          setAlert('');
         }, 6000);
       }).catch((error) => {
         setMessage(error.response.data.message);
@@ -81,11 +84,6 @@ export const AddProject = () => {
     formik.resetForm();
   }
 
-  // const createProjectModal = new bootstrap.Modal('#createProjectModal', {
-  //   keyboard: false
-  // });
-  // createProjectModal.hide();
-
   return (
         <div>
           <div className="modal-header border-0"><button className="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" onClick={handleOnCancelCreateProject}></button></div>
@@ -94,7 +92,7 @@ export const AddProject = () => {
               <div className="row justify-content-center">
                 <div className="col-lg-8">
                   <div>
-                    <h2 className="portfolio-modal-title text-secondary text-uppercase mb-singleP">Create a Project Card</h2>
+                    <h2 className="portfolio-modal-title text-secondary text-uppercase mb-singleP">Create a Project</h2>
                   </div>
                   <div className="divider-custom">
                     <div className="divider-custom-line"></div>
