@@ -80,7 +80,7 @@ export const EditProject = ({ projectId, project }) => {
                       value={formik.values.projectAutor}
                       disabled={loading}
                     />
-                    <label htmlFor="name">Autor</label>
+                    <label htmlFor="name">{project.projectAutor}</label>
                     {formik.touched.projectAutor && formik.errors.projectAutor ? <div className='form-field-error'>{formik.errors.projectAutor}</div> : null}
                   </div>
                   <div className="form-floating mb-3">
@@ -90,7 +90,7 @@ export const EditProject = ({ projectId, project }) => {
                       value={formik.values.projectRepo}
                       disabled={loading}
                     />
-                    <label htmlFor="name">Repository</label>
+                    <label htmlFor="name">{project.projectRepo}</label>
                     {formik.touched.projectRepo && formik.errors.projectRepo ? <div className='form-field-error'>{formik.errors.projectRepo}</div> : null}
                   </div>
                   <div className="form-floating mb-3">
@@ -100,7 +100,7 @@ export const EditProject = ({ projectId, project }) => {
                       value={formik.values.projectWebsite}
                       disabled={loading}
                     />
-                    <label htmlFor="name">Website</label>
+                    <label htmlFor="name">{project.projectWebsite}</label>
                     {formik.touched.projectWebsite && formik.errors.projectWebsite ? <div className='form-field-error'>{formik.errors.projectWebsite}</div> : null}
                   </div>
                   <div className="form-floating mb-3">
@@ -110,7 +110,7 @@ export const EditProject = ({ projectId, project }) => {
                       value={formik.values.projectDescription}
                       disabled={loading}
                     />
-                    <label htmlFor="name">Description</label>
+                    <label htmlFor="name">{project.projectDescription}</label>
                     {formik.touched.projectDescription && formik.errors.projectDescription ? <div className='form-field-error'>{formik.errors.projectDescription}</div> : null}
                   </div>
                   <div className="form-floating mb-3">

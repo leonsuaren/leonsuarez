@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import { AdminLogedIn } from '../../context/AdminLogedIn';
 import { Loading } from '../../components/loading';
-import { ResumeDropdown } from '../../components/resume-dropdown';
 
 export const Navigation = () => {
   const adminLogedIn = useContext(AdminLogedIn);
@@ -43,7 +42,6 @@ export const Navigation = () => {
             <li className="nav-item mx-0 mx-lg-1"><a className="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Portfolio</a></li>
             <li className="nav-item mx-0 mx-lg-1"><a className="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
             <li className="nav-item mx-0 mx-lg-1"><a className="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
-            <ResumeDropdown />
             {
               adminLogedIn.login && <li className="nav-item mx-0 mx-lg-1"><button className="btn btn-xl btn-outline-light" onClick={handleOnLoginOut}>LogOut</button></li>
             }

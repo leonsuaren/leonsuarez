@@ -6,12 +6,12 @@ import { useFormik } from 'formik';
 import { AdminLogedIn } from '../../context/AdminLogedIn';
 import { CrudButton } from '../../components/crud-button';
 import { Loading } from '../../components/loading';
+import { ResumeDropdown } from '../resume-dropdown/ResumeDropdown';
 
 export const Header = () => {
   const adminLogedIn = useContext(AdminLogedIn);
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState({});
-  const [error, setError] = useState(null);
   const [editMode, setEditMode] = useState(false);
 
   const formik = useFormik({
@@ -128,6 +128,7 @@ export const Header = () => {
         <a className={adminLogedIn.login ? "btn btn-xl btn-outline-light disabled" : "btn btn-xl btn-outline-light"} target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/leon-suarez/">
           LinkedIn
         </a>
+        <ResumeDropdown />
       </div>
     </header>
   )
