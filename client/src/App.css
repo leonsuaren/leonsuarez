@@ -11710,3 +11710,33 @@ html {
 }
 
 /* LOGIN AS ADMIN END */
+
+.buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.edit-avatar-picture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 5px rgb(45, 67, 82);
+  background-color: rgb(248, 249, 250);
+  color: rgb(27, 188, 155);
+  font-size: 1.6rem;
+}

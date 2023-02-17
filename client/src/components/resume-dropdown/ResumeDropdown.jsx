@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 
+import { AdminLogedIn } from '../../context/AdminLogedIn';
 import { ResumeModal } from '../../components/modal';
 
-export const ResumeDropdown = () => {
+export const ResumeDropdown = ({ name }) => {
+  const adminLogedIn = useContext(AdminLogedIn);
 
   const handleOnDownloadResume = () => {
     axios({ url: 'http://localhost:8080/api/downloads/download-resume', method: "GET", responseType: "blob" }).then((response) => {
@@ -19,17 +21,11 @@ export const ResumeDropdown = () => {
     <div>
       <div className="navdivtem mx-0 mx-lg-1">
         <div className="dropdown">
-          <button className="btn btn-xl btn-outline-light dropdown-toggle rounded" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <button className={adminLogedIn.login ? "btn btn-xl btn-outline-light dropdown-toggle rounded disabled" : "btn btn-xl btn-outline-light dropdown-toggle rounded"} type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Resume
           </button>
           <ul className="dropdown-menu">
-            <li>
-              <div className="dropdown-item" data-bs-toggle="modal" data-bs-target="#portfolioModal2">See My Resume
-                <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                  <div className="portfolio-item-caption-content text-center text-white" />
-                </div>
-              </div>
-            </li>
+            <li><button className="dropdown-item" data-bs-toggle="modal" data-bs-target="#portfolioModal2">See My Resume</button></li>
             <li><button className="dropdown-item" onClick={handleOnDownloadResume} >Download My Resume</button></li>
           </ul>
         </div>
@@ -41,7 +37,7 @@ export const ResumeDropdown = () => {
             <div className="row justify-content-center">
               <div className="col-lg-8">
                 <div>
-                  <h2 className="portfolio-modal-title text-secondary text-uppercase mb-singleP">Leon Suarez</h2>
+                  <h2 className="portfolio-modal-title text-secondary text-uppercase mb-singleP">{name}</h2>
                 </div>
                 <div className="divider-custom">
                   <div className="divider-custom-line"></div>
