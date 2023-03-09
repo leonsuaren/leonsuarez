@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const connectDB = require('./config/db');
+const path = require('path');
 
 
 const PORT = process.env.PORT;
@@ -19,6 +20,7 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "client/build")));
 
 app.use('/api/projects', cors(), projectRouter);
 app.use('/api/contacts', cors(), contactRouter);
