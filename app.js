@@ -16,12 +16,26 @@ const downloadsRouter = require('./routes/downloads');
 
 connectDB();
 
-
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "client/build")));
+// app.use('/uploads', express.static('uploads'));
 
+// const multer = require('multer');
+ 
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'uploads')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + '-' + Date.now())
+//     }
+// });
+ 
+// const upload = multer({ storage: storage });
+
+// app.use('/api/projects', cors(), upload.single('profile-file'), projectRouter);
 app.use('/api/projects', cors(), projectRouter);
 app.use('/api/contacts', cors(), contactRouter);
 app.use('/api/admin', cors(), adminRouter);

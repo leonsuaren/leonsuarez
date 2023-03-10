@@ -55,7 +55,7 @@ export const ContactInfoForm = () => {
       contactNumber: '',
       contactMessage: ''
     },
-    onSubmit: async values => {
+    onSubmit: async (values, {resetForm}) => {
       await axios.post('http://localhost:8080/api/contacts',
         { contactName: values.contactName, contactEmail: values.contactEmail, contactNumber: values.contactNumber, contactMessage: values.contactMessage }
       ).then((response) => {
@@ -67,6 +67,7 @@ export const ContactInfoForm = () => {
       }).catch((error) => {
         setError(error)
       });
+      resetForm({ values: '' })
     }
   });
 

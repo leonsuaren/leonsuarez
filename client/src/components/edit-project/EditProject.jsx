@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
 import { useFormik } from 'formik';
+import axios from 'axios';
 
 import { Loading } from '../loading';
 
@@ -16,18 +16,47 @@ export const EditProject = ({ projectId, project }) => {
   const [alert, setAlert] = useState('success');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-
   const formik = useFormik({
     initialValues: {
-      projectName: '',
-      projectAutor: '',
-      projectDescription: '',
-      projectRepo: '',
-      projectWebsite: '',
-      projectImage: ''
+      porjectId: projectId,
+      projectName: project.projectName,
+      projectAutor: project.projectAutor,
+      projectDescription: project.projectDescription,
+      projectRepo: project.projectRepo,
+      projectWebsite: project.projectWebsite,
+      projectImage: project.projectImage
     },
-    onSubmit: values => {
-
+    onSubmit: async values  => {
+      setLoading(false);
+      await axios.put('http://localhost:8080/api/projects/update-project', {
+        projectId: projectId,
+        projectName: values.projectName,
+        projectAutor: values.projectAutor,
+        projectDescription: values.projectDescription,
+        projectRepo: values.projectRepo,
+        projectWebsite: values.projectWebsite,
+        projectImage: values.projectImage
+      }).then((response) => {
+        console.log(response);
+        setMessage(response.data.message);
+        setAlert('success');
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 3000);
+        setTimeout(() => {
+          setMessage('');
+          formik.resetForm();
+          document.getElementById("editProjectModal").classList.remove("show", "d-block");
+          document.querySelectorAll(".modal-backdrop").forEach(el => el.classList.remove("modal-backdrop"));
+          setAlert('');
+        }, 6000);
+      }).catch((error) => {
+        setMessage(error.response.data.message);
+        setAlert('danger');
+        document.getElementById("editProjectModal").classList.remove("show", "d-block");
+        document.querySelectorAll(".modal-backdrop").forEach(el => el.classList.remove("modal-backdrop"));
+      });
     }
 
   });
@@ -35,8 +64,6 @@ export const EditProject = ({ projectId, project }) => {
   const handleOnCancelUpdateProject = () => {
 
   }
-
-  console.log(project.projectName);
 
   return (
     <div>
@@ -125,7 +152,7 @@ export const EditProject = ({ projectId, project }) => {
                       Cancel
                       </button>
                     <button className="btn btn-primary button-margin" type="submit" id="submitButton" disabled={loading}>
-                      Create Project
+                      Update
                       </button>
                   </div>
                 </form>
