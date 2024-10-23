@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 
 import { AdminLogedIn, ProjectsContext } from '../../context';
+import { useGetData } from '../../hooks/api/useGetData';
 
 import { Loading } from '../../components/loading';
 import { ServerError } from '../server-error';
@@ -16,6 +17,10 @@ export const Portfolio = () => {
   const projects = [].concat(projectsContext.projects).reverse();
   const error = projectsContext.error;
   const loading = projectsContext.loading;
+
+  const { load, dat, erro } = useGetData(`http://localhost:8080/api/projects`);
+  console.log({projects: projects})
+  console.log({data: dat.projects})
 
   const [singleProject, setSingleProject] = useState([{
     projectName: '',

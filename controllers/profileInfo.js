@@ -1,12 +1,19 @@
 const ProfileInfo = require('../models/profileInfo');
 
 exports.createProfileInfo = async (req, res) => {
-  const { profileName, profileTitle, profileAvatar, profileLanguage } = req.body;
+  const { profileName, profileTitle, profileAvatar, profileLanguage, profileEmail, profileNumber } = req.body;
+
+  const userExist = await ProfileInfo.find({ $or: [{profileEmail}, {profileName}] });
+
+  if (userExist) {
+    return res.status(404).json({ message: 'Profile already exist!' })
+  }
+
   try {
-    const createProfileInfo = await ProfileInfo.create({ profileName: profileName, profileTitle: profileTitle, profileAvatar: profileAvatar, profileLanguage: profileLanguage });
-    res.status(201).json({ message: 'Profile created success!', createProfileInfo: createProfileInfo });
+    const createProfileInfo = await ProfileInfo.create({ profileName, profileTitle, profileAvatar, profileLanguage, profileEmail, profileNumber });
+    return res.status(201).json({ message: 'Profile created success!', createProfileInfo: createProfileInfo });
   } catch (error) {
-    res.status(500).json({ error: error });
+    return res.status(500).json({ error: error });
   }
 };
 
