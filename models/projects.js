@@ -13,9 +13,13 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     require: true
   },
+  // projectImage: {
+  //   data: Buffer,
+  //   contentType: String
+  // },
   projectImage: {
-    data: Buffer,
-    contentType: String
+    type: String,
+    require: true
   },
   projectRepo: {
     type: String,

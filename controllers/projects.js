@@ -3,7 +3,7 @@ const Projects = require('../models/projects');
 // const path = require('path');
 
 exports.createProject = async (req, res) => {
-  const { projectName, projectAutor, projectRepo, projectWebsite, projectDescription } = req.body;
+  const { projectName, projectAutor, projectRepo, projectWebsite, projectDescription, projectImage } = req.body;
   // const Image = {
   //   data: fs.readFileSync(path.join(__dirname, '..' + '/uploads/' + projectImage)),
   //   contentType: 'image/png'
@@ -22,7 +22,8 @@ exports.createProject = async (req, res) => {
         projectAutor: projectAutor,
         projectRepo: projectRepo,
         projectWebsite: projectWebsite,
-        projectDescription: projectDescription
+        projectDescription: projectDescription,
+        projectImage: projectImage
       });
       res.status(201).json({ message: "Project created success", project: project });
       return
