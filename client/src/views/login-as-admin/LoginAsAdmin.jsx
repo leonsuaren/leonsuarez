@@ -54,7 +54,7 @@ export const LoginAsAdmin = () => {
                 <form className='login-as-admin-form' onSubmit={formik.handleSubmit}>
                   <div className="login-as-admin-input">
                     <label htmlFor="adminName">Admin</label>
-                    <input className="login-input form-control" id="adminName" type="password" data-sb-validations="required"
+                    <input className="login-input form-control" id="adminName" type="password" data-sb-validations="required" autoComplete='off'
                       value={formik.values.adminName}
                       onChange={formik.handleChange}
                     />
@@ -62,7 +62,7 @@ export const LoginAsAdmin = () => {
                   </div>
                   <div className="login-as-admin-input">
                     <label htmlFor="password">Password</label>
-                    <input className="login-input form-control" id="password" type="password" data-sb-validations="required"
+                    <input className="login-input form-control" id="password" type="password" data-sb-validations="required" autoComplete='off'
                       value={formik.values.password}
                       onChange={formik.handleChange}
                     />

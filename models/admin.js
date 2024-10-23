@@ -11,7 +11,21 @@ const AdminSchema = new mongoose.Schema({
     type: String,
     require: true
   }
-});
+},
+  {
+    statics: {
+      onCreateAdmin(adminName, password) {
+        return this.create({adminName, password});
+      },
+      onAdminExist(adminName) {
+        return this.findOne({adminName});
+      },
+      onAdminLogin(adminName, password) {
+        return this.findOne({adminName}).select("+password");
+      }
+    }
+  }
+);
 
 AdminSchema.pre('save', async function(next) {
   if (!this.isModified("password")) {
