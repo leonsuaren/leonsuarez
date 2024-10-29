@@ -11,7 +11,7 @@ export const Navigation = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchProfileInfo = async () => {
+    (async () => {
       setLoading(true);
       await axios.post('http://localhost:8080/api/profile/profile-info', { profileLanguage: "English" }).then((response) => {
         setProfile(response.data.profileInfo);
@@ -19,8 +19,7 @@ export const Navigation = () => {
           setLoading(false);
         }, 1000);
       }).catch((error) => { console.log(error) })
-    };
-    fetchProfileInfo();
+    })();
   }, []);
   if (!profile) return null;
 

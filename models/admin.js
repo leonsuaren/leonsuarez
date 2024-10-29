@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 const AdminSchema = new mongoose.Schema({
   adminName: {
     type: String,
-    require: true
+    require: true,
+    unique: true
   },
   password: {
     type: String,

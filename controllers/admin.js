@@ -17,7 +17,6 @@ exports.createAdmin = async (req, res) => {
 exports.adminLogin = async (req, res) => {
   const { adminName, password } = req.body;
   try {
-    // const admin =  await Admin.findOne({ adminName }).select("+password");
     const admin =  await Admin.onAdminLogin(adminName, password);
     if (!admin) {
       return res.status(404).json({ token: null, message: "Invalid Name", user: null, success: false });
