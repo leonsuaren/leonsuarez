@@ -22,7 +22,15 @@ const ContactSchema = new mongoose.Schema({
     type: String,
     require: true
   }
-});
+},
+  {
+    statics: {
+      onCreateContact(contactName, contactEmail, contactNumber, contactMessage) {
+        return this.create({ contactName, contactEmail, contactNumber, contactMessage })
+      }
+    }
+  }
+);
 
 const Contacts = mongoose.model('Contact', ContactSchema);
 
