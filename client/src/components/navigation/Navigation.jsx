@@ -46,8 +46,8 @@ export const Navigation = () => {
                 <span className='py-3 px-0 px-lg-3 rounded mx-0 mx-lg-1'>Language</span>
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item nav-link py-3 px-0 px-lg-3 rounded" href="#">Español</a></li>
-                <li><a class="dropdown-item nav-link py-3 px-0 px-lg-3 rounded" href="#">English</a></li>
+                <li><span class="dropdown-item nav-link py-3 px-0 px-lg-3 rounded">Español</span></li>
+                <li><span class="dropdown-item nav-link py-3 px-0 px-lg-3 rounded">English</span></li>
               </ul>
             </li>
             {
